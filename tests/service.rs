@@ -135,7 +135,7 @@ fn get_dashboard_url() -> Result<()> {
 fn loading_cache_without_collection_type() -> Result<()> {
     let etebase = init_test(&USER)?;
     let col_mgr = etebase.collection_manager()?;
-    let meta = ItemMetadata::new().set_item_type(Some("type")).set_name(Some("Collection")).set_description(Some("Mine")).set_color(Some("#aabbcc")).clone();
+    let meta = ItemMetadata::new().set_item_type("type").set_name("Collection").set_description("Mine").set_color("#aabbcc").clone();
     let content = b"SomeContent";
 
     let col = col_mgr.cache_load(&etebase::utils::from_base64("kgHcBTvMlMyVzNkgTl9vMjNITDFsVlQ1VG5Dd1QzVkx0VDN5TUtBbDZ0UDYBzMDMlMy2QktLMk50R2NCY1pDRDBTcllKeHBzQczEUzXMyVxJSQptzPDMyMzNPMzhAVbMrsyjzPfMjU0pzODMq2lmzMAUEBLM_My-zOhGMsyREmHM6Mz3zO7MwVF8F2tnzOXM3TnM9MypzOQ9CczHfMzGCywPzOPMlsyTzOE-zIRAKczQJzVxRMz9NMz3MczbzMHM5zY_MDrMwsyRzJLM2StoaDhPTTFiQmR5bWZUTlZlanhwcWtPOExWLUpIUDFsUGRST2lCWXhnaEFnzMUEKMy4KGNOJ8z3zN1pzNFGzNLM_8yiCczpzLIxzJQSzNjM58yACS0sP8yCzKDM-GLM0MyCzJMPL8z-Hsz-QMzRT1BCRcyjWszRzLPMkxjMzFYmzMJ8IE1_zMMnCczyzIlUzIbMhxDM3XHMskHM9x9uaWhDzM3Myk1pzI7M78yWzOMrOFHMw04WzK7M-iXMm3tdzKAazMVpzOXMzczqR38KWMyPGEvMzkoyWmodzOvMwczSzLXMplkGzPIDzKvMxGEfQ8zjMcyIdAB4JczLcczfd8z5Vsz4ccyRdMzXzKU1zKcRzP_MycynzLhQzOUvJ8z3FMyHzOpMzLDMm8y6HAw1zKQgJl8CzNrM6XQFRsySFH7Mrn81zPPM4W0HzIPMh1PMpMyUzPNdzNsSzNE6ZQPM9cyGC04eDw7MrR9CaAnM73ZNzJYWOUzMr8zkzK_MxczAzKDMysz5zOt8LlN9zK3MynNizKDM0czXzNhBzNEdNhU8zNTMzTFIb8zmVszHzIfMiALMlkzM68zbzINAzNbMl8z8zMh_T8zHc8zJci7MtkDMl8ywcWIoe1zMuczCRFbMpcy3zJhvzK5PCz4EzMvMlszcAMyWzKIEAMzozPrMlh4JK8z3zMDM8XHMnWLMiMybAijMzczzzOtVaSPM-GbMvXrMksyyzK8_TQ7M9xzMw1PM-lvM68yrXHXM1y5AC0LM6iROcMzmzPzMlBHMtwrM50bMtlrMzX11zIvM4DM4zNIpDC1TEsybQkcuecynQMzCzK_M0sz-zOvMrhdNzJpuzKbM6j7Mjn7M6MzSYszrMzjM5szszIEJYWtfdVs7JVIvS0AQQcyBennMjMzgY8z6zORezOnM5CAZY8z3WWAKPcykT8yVzJDM4BjMz8zNzONtJglpzKRNQQHMxRPM7MymzPnMpy5RzNNIIsyfzKXM9hvMlUbMuczfzK8xzLTM08zlMcyczLLMlGzMrsyOAz7MvMzZzJjMwMyHHsygJMzczMnM1cybzLDMyszqDXrMmGZ3zJTM4nhqZhRhC8yTzMTMtHjM41UTIxvMtMyFzOZ-zIZyHszlzJM9WszhEUbM9VXMmxoNzKfMzUoKKUg9PjYOFMzgzO8jPQzM02TM8BcXzP7Mz8zUfkTMnVRJzIFCzK1ZH8yyzIrMvcy-zP5PzKJjFMygzKvM415LYszXQB_MnCfMzkJmbl_MnmDM42HM88zezOQibhHMuczczMfM2ixwzMvMpczDYRtWzLLM9cydIkjMrxDMj8yYzKkKzLtRzMM1zPbMyS5JYGnM08ylDmdUzL0ANMzgYSfM4jTMm8zvPE0dzL3Mw8zmzOxyzP3M93PM78z1NnoZVxfM7loNfMzxzPHM4j7MpB4NPD0rIczKzN4zKXnMww3M3czlADnMqczxeszuzMDMx8y_B8zyzPYTEjpZPD3M5cz6OALMxH3MgMznzPIXWkMZRzHMuHXMxMzrHEDM9szLaWYSWx4LdMz0zIjM5szMzN3M9syAzKUmWMzbf08QaEc9bMypzOA5bMzjzMQQzJNtVcyCzKJqNmLM0sy1NDMDRcyxzLrMyAzM8hPMv8y5zKoizOzMwEByGszRzIs4HcztNszTzP7M-syyzL_Ms8zFzK5EOk0mYwBGC8yTzO_MynPMrsyxzNMeHszvzI4uzKZ9FTvMzQM2zO0yzNNkzIrM58zfzP7My3rMnMz0zLt9zMgIW8z3zL0ucMy0zK5OZsypT8zOzJnMmMzgGA_M6xLMn8zXzOZ8UnogzL7MtcygzKfMtszUzLXMjUcwbAUQWyzMv8yfLczGcUrM68zdSFlVzJhFzP_M0m3MohzMsljMz8yQGMz-HnBgzJbM3syUzPo7zM3MjknMriHM7QF7YicvBkltX8zeLMyBG3vMq8zNzPPMzcymzIvM4czmEMzTEcyrzK7MtMzszJXMj8z3W8ywzI_MtjHM68yTzKNBEGjMt8y-dTxcbMzATnjMyMzqXHRHHMznzKrMqMy4zKgozLxZDGlZzN7Ml8yAzP99zMdzDwdYTsy2zKYczMcgzKlmasyQzPlDzLRJzMMVzOvM2k3MswbMpjnM53XM-sykzN8QY2YQzMPMjELMwAHMxEjMo8zfFw7MzQEBbcybzJ7M2czrzMTM9x3Mmsy1zILM42xqzIo-MQ_M5czXzLrMxcyozNhHzNsNzLFHzI1vzL3MoyTM3AlKFxzM0WZ0GjnMs8yXURjMm2xhQ8yONGfM28zVzKPMtMzlzIHM6VjM2BLMwA")?)?;
@@ -149,14 +149,14 @@ fn loading_cache_without_collection_type() -> Result<()> {
 fn simple_collection_handling() -> Result<()> {
     let etebase = init_test(&USER)?;
     let col_mgr = etebase.collection_manager()?;
-    let meta = ItemMetadata::new().set_name(Some("Collection")).set_description(Some("Mine")).set_color(Some("#aabbcc")).clone();
+    let meta = ItemMetadata::new().set_name("Collection").set_description("Mine").set_color("#aabbcc").clone();
     let content = b"SomeContent";
 
     let mut col = col_mgr.create("some.coltype", &meta, content)?;
     assert_eq!(col.collection_type()?, "some.coltype");
     verify_collection(&col, &meta, content)?;
 
-    let meta2 = meta.clone().set_name(Some("Collection meta2")).clone();
+    let meta2 = meta.clone().set_name("Collection meta2").clone();
     col.set_meta(&meta2)?;
     verify_collection(&col, &meta2, content)?;
 
@@ -172,19 +172,19 @@ fn simple_collection_handling() -> Result<()> {
 fn simple_item_handling() -> Result<()> {
     let etebase = init_test(&USER)?;
     let col_mgr = etebase.collection_manager()?;
-    let col_meta = ItemMetadata::new().set_name(Some("Collection")).clone();
+    let col_meta = ItemMetadata::new().set_name("Collection").clone();
     let col_content = b"SomeContent";
 
     let col = col_mgr.create("some.coltype", &col_meta, col_content)?;
 
     let it_mgr = col_mgr.item_manager(&col)?;
 
-    let meta = ItemMetadata::new().set_name(Some("Item 1")).clone();
+    let meta = ItemMetadata::new().set_name("Item 1").clone();
     let content = b"ItemContent";
     let mut item = it_mgr.create(&meta, content)?;
     verify_item(&item, &meta, content)?;
 
-    let meta2 = ItemMetadata::new().set_name(Some("Item 2")).clone();
+    let meta2 = ItemMetadata::new().set_name("Item 2").clone();
     item.set_meta(&meta2)?;
     verify_item(&item, &meta2, content)?;
 
@@ -200,7 +200,7 @@ fn simple_item_handling() -> Result<()> {
 fn simple_collection_sync() -> Result<()> {
     let etebase = init_test(&USER)?;
     let col_mgr = etebase.collection_manager()?;
-    let meta = ItemMetadata::new().set_name(Some("Collection")).set_description(Some("Mine")).set_color(Some("#aabbcc")).clone();
+    let meta = ItemMetadata::new().set_name("Collection").set_description("Mine").set_color("#aabbcc").clone();
     let content = b"SomeContent";
 
     let mut col = col_mgr.create("some.coltype", &meta, content)?;
@@ -222,7 +222,7 @@ fn simple_collection_sync() -> Result<()> {
         assert_eq!(collections.data().len(), 0);
     }
 
-    let meta2 = meta.clone().set_name(Some("Collection meta2")).clone();
+    let meta2 = meta.clone().set_name("Collection meta2").clone();
     col.set_meta(&meta2)?;
 
     col_mgr.upload(&col, None)?;
@@ -260,7 +260,7 @@ fn simple_collection_sync() -> Result<()> {
 fn collection_types() -> Result<()> {
     let etebase = init_test(&USER)?;
     let col_mgr = etebase.collection_manager()?;
-    let col_meta = ItemMetadata::new().set_name(Some("Collection")).set_description(Some("Mine")).set_color(Some("#aabbcc")).clone();
+    let col_meta = ItemMetadata::new().set_name("Collection").set_description("Mine").set_color("#aabbcc").clone();
     let col_content = b"SomeContent";
 
     let col = col_mgr.create("some.coltype", &col_meta, col_content)?;
@@ -295,7 +295,7 @@ fn collection_types() -> Result<()> {
 fn simple_item_sync() -> Result<()> {
     let etebase = init_test(&USER)?;
     let col_mgr = etebase.collection_manager()?;
-    let col_meta = ItemMetadata::new().set_name(Some("Collection")).set_description(Some("Mine")).set_color(Some("#aabbcc")).clone();
+    let col_meta = ItemMetadata::new().set_name("Collection").set_description("Mine").set_color("#aabbcc").clone();
     let col_content = b"SomeContent";
 
     let col = col_mgr.create("some.coltype", &col_meta, col_content)?;
@@ -304,7 +304,7 @@ fn simple_item_sync() -> Result<()> {
 
     let it_mgr = col_mgr.item_manager(&col)?;
 
-    let meta = ItemMetadata::new().set_name(Some("Item 1")).clone();
+    let meta = ItemMetadata::new().set_name("Item 1").clone();
     let content = b"Content 1";
 
     let mut item = it_mgr.create(&meta, content)?;
@@ -319,7 +319,7 @@ fn simple_item_sync() -> Result<()> {
 
     let mut item_old = it_mgr.fetch(item.uid(), None)?;
 
-    let meta2 = ItemMetadata::new().set_name(Some("Item 2")).clone();
+    let meta2 = ItemMetadata::new().set_name("Item 2").clone();
     item.set_meta(&meta2)?;
 
     let col_old = col_mgr.fetch(col.uid(), None)?;
@@ -362,7 +362,7 @@ fn simple_item_sync() -> Result<()> {
 fn collection_as_item() -> Result<()> {
     let etebase = init_test(&USER)?;
     let col_mgr = etebase.collection_manager()?;
-    let col_meta = ItemMetadata::new().set_name(Some("Collection")).set_description(Some("Mine")).set_color(Some("#aabbcc")).clone();
+    let col_meta = ItemMetadata::new().set_name("Collection").set_description("Mine").set_color("#aabbcc").clone();
     let col_content = b"SomeContent";
 
     let mut col = col_mgr.create("some.coltype", &col_meta, col_content)?;
@@ -440,7 +440,7 @@ fn collection_as_item() -> Result<()> {
 fn collection_and_item_deletion() -> Result<()> {
     let etebase = init_test(&USER)?;
     let col_mgr = etebase.collection_manager()?;
-    let col_meta = ItemMetadata::new().set_name(Some("Collection")).clone();
+    let col_meta = ItemMetadata::new().set_name("Collection").clone();
     let col_content = b"";
 
     let mut col = col_mgr.create("some.coltype", &col_meta, col_content)?;
@@ -449,7 +449,7 @@ fn collection_and_item_deletion() -> Result<()> {
 
     let it_mgr = col_mgr.item_manager(&col)?;
 
-    let meta = ItemMetadata::new().set_name(Some("Item 1")).clone();
+    let meta = ItemMetadata::new().set_name("Item 1").clone();
     let content = b"Content 1";
 
     let mut item = it_mgr.create(&meta, content)?;
@@ -491,7 +491,7 @@ fn collection_and_item_deletion() -> Result<()> {
 fn empty_content() -> Result<()> {
     let etebase = init_test(&USER)?;
     let col_mgr = etebase.collection_manager()?;
-    let col_meta = ItemMetadata::new().set_name(Some("Collection")).clone();
+    let col_meta = ItemMetadata::new().set_name("Collection").clone();
     let col_content = b"";
 
     let col = col_mgr.create("some.coltype", &col_meta, col_content)?;
@@ -505,7 +505,7 @@ fn empty_content() -> Result<()> {
 
     let it_mgr = col_mgr.item_manager(&col)?;
 
-    let meta = ItemMetadata::new().set_name(Some("Item 1")).clone();
+    let meta = ItemMetadata::new().set_name("Item 1").clone();
     let content = b"";
 
     let item = it_mgr.create(&meta, content)?;
@@ -525,7 +525,7 @@ fn empty_content() -> Result<()> {
 fn list_response_correctness() -> Result<()> {
     let etebase = init_test(&USER)?;
     let col_mgr = etebase.collection_manager()?;
-    let col_meta = ItemMetadata::new().set_name(Some("Collection")).clone();
+    let col_meta = ItemMetadata::new().set_name("Collection").clone();
     let col_content = b"";
 
     let col = col_mgr.create("some.coltype", &col_meta, col_content)?;
@@ -541,7 +541,7 @@ fn list_response_correctness() -> Result<()> {
 
     let items: Vec<Item> = (0..5).into_iter()
         .map(|i| {
-            let meta = ItemMetadata::new().set_name(Some(&format!("Item {}", i))).clone();
+            let meta = ItemMetadata::new().set_name(&format!("Item {}", i)).clone();
             let content = b"";
             it_mgr.create(&meta, content).unwrap()
         })
@@ -568,7 +568,7 @@ fn list_response_correctness() -> Result<()> {
 
     // Also check collections
     for i in 0..4 {
-        let meta = ItemMetadata::new().set_name(Some(&format!("Item {}", i))).clone();
+        let meta = ItemMetadata::new().set_name(&format!("Item {}", i)).clone();
         let content = b"";
         let col = col_mgr.create("some.coltype", &meta, content).unwrap();
         col_mgr.upload(&col, None)?;
@@ -599,7 +599,7 @@ fn list_response_correctness() -> Result<()> {
 fn item_transactions() -> Result<()> {
     let etebase = init_test(&USER)?;
     let col_mgr = etebase.collection_manager()?;
-    let col_meta = ItemMetadata::new().set_name(Some("Collection")).clone();
+    let col_meta = ItemMetadata::new().set_name("Collection").clone();
     let col_content = b"";
 
     let col = col_mgr.create("some.coltype", &col_meta, col_content)?;
@@ -607,7 +607,7 @@ fn item_transactions() -> Result<()> {
     col_mgr.upload(&col, None)?;
 
     let it_mgr = col_mgr.item_manager(&col)?;
-    let meta = ItemMetadata::new().set_name(Some("Item 1")).clone();
+    let meta = ItemMetadata::new().set_name("Item 1").clone();
     let content = b"";
     let mut item = it_mgr.create(&meta, content)?;
 
@@ -619,7 +619,7 @@ fn item_transactions() -> Result<()> {
 
     let items: Vec<Item> = (0..5).into_iter()
         .map(|i| {
-            let meta = ItemMetadata::new().set_name(Some(&format!("Item {}", i))).clone();
+            let meta = ItemMetadata::new().set_name(&format!("Item {}", i)).clone();
             let content = b"";
             it_mgr.create(&meta, content).unwrap()
         })
@@ -632,7 +632,7 @@ fn item_transactions() -> Result<()> {
         assert_eq!(items.data().len(), 6);
     }
 
-    let meta2 = ItemMetadata::new().set_name(Some("some")).clone();
+    let meta2 = ItemMetadata::new().set_name("some").clone();
     item.set_meta(&meta2)?;
     let deps = vec![&item];
 
@@ -644,7 +644,7 @@ fn item_transactions() -> Result<()> {
     }
 
     {
-        let meta3 = ItemMetadata::new().set_name(Some("some2")).clone();
+        let meta3 = ItemMetadata::new().set_name("some2").clone();
         item.set_meta(&meta3)?;
 
         let deps2 = items.iter().chain(iter::once(&item_old));
@@ -660,7 +660,7 @@ fn item_transactions() -> Result<()> {
     }
 
     {
-        let meta3 = ItemMetadata::new().set_name(Some("some3")).clone();
+        let meta3 = ItemMetadata::new().set_name("some3").clone();
         let mut item2 = it_mgr.fetch(items[0].uid(), None)?;
         item2.set_meta(&meta3)?;
 
@@ -676,7 +676,7 @@ fn item_transactions() -> Result<()> {
 
     {
         // Global stoken test
-        let meta3 = ItemMetadata::new().set_name(Some("some4")).clone();
+        let meta3 = ItemMetadata::new().set_name("some4").clone();
         item.set_meta(&meta3)?;
 
         let new_col = col_mgr.fetch(col.uid(), None)?;
@@ -697,7 +697,7 @@ fn item_transactions() -> Result<()> {
 fn item_batch_stoken() -> Result<()> {
     let etebase = init_test(&USER)?;
     let col_mgr = etebase.collection_manager()?;
-    let col_meta = ItemMetadata::new().set_name(Some("Collection")).clone();
+    let col_meta = ItemMetadata::new().set_name("Collection").clone();
     let col_content = b"";
 
     let col = col_mgr.create("some.coltype", &col_meta, col_content)?;
@@ -705,7 +705,7 @@ fn item_batch_stoken() -> Result<()> {
     col_mgr.upload(&col, None)?;
 
     let it_mgr = col_mgr.item_manager(&col)?;
-    let meta = ItemMetadata::new().set_name(Some("Item Orig")).clone();
+    let meta = ItemMetadata::new().set_name("Item Orig").clone();
     let content = b"";
     let mut item = it_mgr.create(&meta, content)?;
 
@@ -715,7 +715,7 @@ fn item_batch_stoken() -> Result<()> {
 
     let items: Vec<Item> = (0..5).into_iter()
         .map(|i| {
-            let meta = ItemMetadata::new().set_name(Some(&format!("Item {}", i))).clone();
+            let meta = ItemMetadata::new().set_name(&format!("Item {}", i)).clone();
             let content = b"";
             it_mgr.create(&meta, content).unwrap()
         })
@@ -724,11 +724,11 @@ fn item_batch_stoken() -> Result<()> {
     it_mgr.batch(items.iter(), None)?;
 
     {
-        let meta3 = ItemMetadata::new().set_name(Some("some2")).clone();
+        let meta3 = ItemMetadata::new().set_name("some2").clone();
         item2.set_meta(&meta3)?;
         it_mgr.batch(iter::once(&item2), None)?;
 
-        let meta3 = ItemMetadata::new().set_name(Some("some3")).clone();
+        let meta3 = ItemMetadata::new().set_name("some3").clone();
         item.set_meta(&meta3)?;
 
         // Old stoken in the item itself should work for batch and fail for transaction or batch with deps
@@ -740,7 +740,7 @@ fn item_batch_stoken() -> Result<()> {
 
     {
         // Global stoken test
-        let meta3 = ItemMetadata::new().set_name(Some("some4")).clone();
+        let meta3 = ItemMetadata::new().set_name("some4").clone();
         item.set_meta(&meta3)?;
 
         let new_col = col_mgr.fetch(col.uid(), None)?;
@@ -761,7 +761,7 @@ fn item_batch_stoken() -> Result<()> {
 fn item_fetch_updates() -> Result<()> {
     let etebase = init_test(&USER)?;
     let col_mgr = etebase.collection_manager()?;
-    let col_meta = ItemMetadata::new().set_name(Some("Collection")).clone();
+    let col_meta = ItemMetadata::new().set_name("Collection").clone();
     let col_content = b"";
 
     let col = col_mgr.create("some.coltype", &col_meta, col_content)?;
@@ -769,7 +769,7 @@ fn item_fetch_updates() -> Result<()> {
     col_mgr.upload(&col, None)?;
 
     let it_mgr = col_mgr.item_manager(&col)?;
-    let meta = ItemMetadata::new().set_name(Some("Item Orig")).clone();
+    let meta = ItemMetadata::new().set_name("Item Orig").clone();
     let content = b"";
     let item = it_mgr.create(&meta, content)?;
 
@@ -777,7 +777,7 @@ fn item_fetch_updates() -> Result<()> {
 
     let items: Vec<Item> = (0..5).into_iter()
         .map(|i| {
-            let meta = ItemMetadata::new().set_name(Some(&format!("Item {}", i))).clone();
+            let meta = ItemMetadata::new().set_name(&format!("Item {}", i)).clone();
             let content = b"";
             it_mgr.create(&meta, content).unwrap()
         })
@@ -814,7 +814,7 @@ fn item_fetch_updates() -> Result<()> {
 
     {
         let mut item2 = it_mgr.fetch(items[0].uid(), None)?;
-        let meta3 = ItemMetadata::new().set_name(Some("some2")).clone();
+        let meta3 = ItemMetadata::new().set_name("some2").clone();
         item2.set_meta(&meta3)?;
         it_mgr.batch(iter::once(&item2), None)?;
     }
@@ -854,7 +854,7 @@ fn item_fetch_updates() -> Result<()> {
 fn item_revisions() -> Result<()> {
     let etebase = init_test(&USER)?;
     let col_mgr = etebase.collection_manager()?;
-    let col_meta = ItemMetadata::new().set_name(Some("Collection")).clone();
+    let col_meta = ItemMetadata::new().set_name("Collection").clone();
     let col_content = b"";
 
     let col = col_mgr.create("some.coltype", &col_meta, col_content)?;
@@ -862,18 +862,18 @@ fn item_revisions() -> Result<()> {
     col_mgr.upload(&col, None)?;
 
     let it_mgr = col_mgr.item_manager(&col)?;
-    let meta = ItemMetadata::new().set_name(Some("Item Orig")).clone();
+    let meta = ItemMetadata::new().set_name("Item Orig").clone();
     let content = b"";
     let mut item = it_mgr.create(&meta, content)?;
 
     for i in 0..5 {
-        let meta = ItemMetadata::new().set_name(Some(&format!("Item {}", i))).clone();
+        let meta = ItemMetadata::new().set_name(&format!("Item {}", i)).clone();
         item.set_meta(&meta)?;
         it_mgr.batch(iter::once(&item), None)?;
     }
 
     {
-        let meta = ItemMetadata::new().set_name(Some("Latest")).clone();
+        let meta = ItemMetadata::new().set_name("Latest").clone();
         item.set_meta(&meta)?;
         it_mgr.batch(iter::once(&item), None)?;
     }
@@ -892,7 +892,7 @@ fn item_revisions() -> Result<()> {
         assert!(revisions.done());
 
         for i in 0..5 {
-            let meta = ItemMetadata::new().set_name(Some(&format!("Item {}", i))).clone();
+            let meta = ItemMetadata::new().set_name(&format!("Item {}", i)).clone();
             let rev = &revisions.data()[4 - i];
             assert_eq!(&rev.meta()?, &meta);
         }
@@ -916,7 +916,7 @@ fn item_revisions() -> Result<()> {
 fn collection_invitations() -> Result<()> {
     let etebase = init_test(&USER)?;
     let col_mgr = etebase.collection_manager()?;
-    let col_meta = ItemMetadata::new().set_name(Some("Collection")).clone();
+    let col_meta = ItemMetadata::new().set_name("Collection").clone();
     let col_content = b"";
 
     let col = col_mgr.create("some.coltype", &col_meta, col_content)?;
@@ -927,7 +927,7 @@ fn collection_invitations() -> Result<()> {
 
     let items: Vec<Item> = (0..5).into_iter()
         .map(|i| {
-            let meta = ItemMetadata::new().set_name(Some(&format!("Item {}", i))).clone();
+            let meta = ItemMetadata::new().set_name(&format!("Item {}", i)).clone();
             let content = b"";
             it_mgr.create(&meta, content).unwrap()
         })
@@ -1079,7 +1079,7 @@ fn iterating_invitations() -> Result<()> {
     let user2_profile = invite_mgr.fetch_user_profile(USER2.username)?;
 
     for i in 0..3 {
-        let meta = ItemMetadata::new().set_name(Some(&format!("Item {}", i))).clone();
+        let meta = ItemMetadata::new().set_name(&format!("Item {}", i)).clone();
         let content = b"";
         let col = col_mgr.create("some.coltype", &meta, content).unwrap();
         col_mgr.upload(&col, None)?;
@@ -1122,7 +1122,7 @@ fn iterating_invitations() -> Result<()> {
 fn collection_access_level() -> Result<()> {
     let etebase = init_test(&USER)?;
     let col_mgr = etebase.collection_manager()?;
-    let col_meta = ItemMetadata::new().set_name(Some("Collection")).clone();
+    let col_meta = ItemMetadata::new().set_name("Collection").clone();
     let col_content = b"";
 
     let col = col_mgr.create("some.coltype", &col_meta, col_content)?;
@@ -1132,7 +1132,7 @@ fn collection_access_level() -> Result<()> {
 
     let items: Vec<Item> = (0..5).into_iter()
         .map(|i| {
-            let meta = ItemMetadata::new().set_name(Some(&format!("Item {}", i))).clone();
+            let meta = ItemMetadata::new().set_name(&format!("Item {}", i)).clone();
             let content = b"";
             it_mgr.create(&meta, content).unwrap()
         })
@@ -1168,7 +1168,7 @@ fn collection_access_level() -> Result<()> {
             }
         }
 
-        let meta = ItemMetadata::new().set_name(Some("Some item")).clone();
+        let meta = ItemMetadata::new().set_name("Some item").clone();
         let content = b"";
         let item = it_mgr2.create(&meta, content)?;
         it_mgr2.batch(iter::once(&item), None)?;
@@ -1189,7 +1189,7 @@ fn collection_access_level() -> Result<()> {
             }
         }
 
-        let meta = ItemMetadata::new().set_name(Some("Some item")).clone();
+        let meta = ItemMetadata::new().set_name("Some item").clone();
         let content = b"";
         let item = it_mgr2.create(&meta, content)?;
         assert_err!(it_mgr2.batch(iter::once(&item), None), Error::PermissionDenied(_));
@@ -1207,7 +1207,7 @@ fn collection_access_level() -> Result<()> {
             }
         }
 
-        let meta = ItemMetadata::new().set_name(Some("Some item")).clone();
+        let meta = ItemMetadata::new().set_name("Some item").clone();
         let content = b"";
         let item = it_mgr2.create(&meta, content)?;
         it_mgr2.batch(iter::once(&item), None)?;
@@ -1237,7 +1237,7 @@ fn collection_access_level() -> Result<()> {
 fn chunking_large_data() -> Result<()> {
     let etebase = init_test(&USER)?;
     let col_mgr = etebase.collection_manager()?;
-    let col_meta = ItemMetadata::new().set_name(Some("Collection")).set_description(Some("Mine")).set_color(Some("#aabbcc")).clone();
+    let col_meta = ItemMetadata::new().set_name("Collection").set_description("Mine").set_color("#aabbcc").clone();
     let col_content = b"SomeContent";
 
     let col = col_mgr.create("some.coltype", &col_meta, col_content)?;
@@ -1301,7 +1301,7 @@ fn login_and_password_change_with_key() -> Result<()> {
     let etebase = init_test(&USER)?;
 
     let col_mgr = etebase.collection_manager()?;
-    let col_meta = ItemMetadata::new().set_name(Some("Collection")).set_description(Some("Mine")).set_color(Some("#aabbcc")).clone();
+    let col_meta = ItemMetadata::new().set_name("Collection").set_description("Mine").set_color("#aabbcc").clone();
     let col = col_mgr.create("some.coltype", &col_meta, b"")?;
     col_mgr.upload(&col, None)?;
 
@@ -1335,7 +1335,7 @@ fn signup_with_key() -> Result<()> {
     let etebase = Account::signup_key(client, &user, &main_key)?;
 
     let col_mgr = etebase.collection_manager()?;
-    let col_meta = ItemMetadata::new().set_name(Some("Collection")).set_description(Some("Mine")).set_color(Some("#aabbcc")).clone();
+    let col_meta = ItemMetadata::new().set_name("Collection").set_description("Mine").set_color("#aabbcc").clone();
     let col = col_mgr.create("some.coltype", &col_meta, b"")?;
     col_mgr.upload(&col, None)?;
 
@@ -1365,7 +1365,7 @@ fn login_and_password_change() -> Result<()> {
     let mut etebase2 = Account::login(client.clone(), USER2.username, USER2.password)?;
 
     let col_mgr2 = etebase2.collection_manager()?;
-    let col_meta = ItemMetadata::new().set_name(Some("Collection")).set_description(Some("Mine")).set_color(Some("#aabbcc")).clone();
+    let col_meta = ItemMetadata::new().set_name("Collection").set_description("Mine").set_color("#aabbcc").clone();
     let col_content = b"SomeContent";
 
     let col = col_mgr2.create("some.coltype", &col_meta, col_content)?;
@@ -1405,7 +1405,7 @@ fn session_save_and_restore() -> Result<()> {
     let etebase = init_test(&USER)?;
 
     let col_mgr = etebase.collection_manager()?;
-    let col_meta = ItemMetadata::new().set_name(Some("Collection")).set_description(Some("Mine")).set_color(Some("#aabbcc")).clone();
+    let col_meta = ItemMetadata::new().set_name("Collection").set_description("Mine").set_color("#aabbcc").clone();
     let col_content = b"SomeContent";
 
     let col = col_mgr.create("some.coltype", &col_meta, col_content)?;
@@ -1441,7 +1441,7 @@ fn cache_collections_and_items() -> Result<()> {
     let etebase = init_test(&USER)?;
 
     let col_mgr = etebase.collection_manager()?;
-    let col_meta = ItemMetadata::new().set_name(Some("Collection")).set_description(Some("Mine")).set_color(Some("#aabbcc")).clone();
+    let col_meta = ItemMetadata::new().set_name("Collection").set_description("Mine").set_color("#aabbcc").clone();
     let col_content = b"SomeContent";
 
     let col = col_mgr.create("some.coltype", &col_meta, col_content)?;
@@ -1449,7 +1449,7 @@ fn cache_collections_and_items() -> Result<()> {
 
     let it_mgr = col_mgr.item_manager(&col)?;
 
-    let meta = ItemMetadata::new().set_name(Some("Item")).clone();
+    let meta = ItemMetadata::new().set_name("Item").clone();
     let content = b"SomeItemContent";
     let item = it_mgr.create(&meta, content)?;
 
